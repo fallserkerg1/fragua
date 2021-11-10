@@ -1,7 +1,7 @@
 <?php $__env->startSection('content'); ?>
 
 <div class="container">
-    <h1>Bienvenido</h1>
+    <h1>Bienvenido <?php echo e(Auth::user()->name); ?></h1>
 </div>
 
 <?php $__env->stopSection(); ?>
