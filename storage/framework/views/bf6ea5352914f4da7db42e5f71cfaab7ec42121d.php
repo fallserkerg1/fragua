@@ -1,0 +1,1 @@
+<?php /**PATH C:\xampp\htdocs\fragua\resources\views/admin/dashboard.blade.php ENDPATH**/ ?>
