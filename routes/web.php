@@ -32,6 +32,7 @@ Route::post('/admin/table/employes', [EmployeController::class, 'create'])->name
 Route::get('/admin/table/employe/{employe}/edit', [EmployeController::class, 'edit'])->name('admin.editEmploye');
 Route::put('/admin/table/employe/{employe}', [EmployeController::class, 'update'])->name('admin.updateEmploye');
 Route::delete('admin/table/employe/{employe}', [EmployeController::class, 'delete'])->name('admin.deleteEmploye');
+//Registro de Usuarios
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
