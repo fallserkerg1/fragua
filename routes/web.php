@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\EmployeController;
+use App\Models\Employe;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,13 +21,17 @@ Route::get('/', function () {
 });
 //Registro Guns
 Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
-Route::get('/admin/table', [AdminController::class, 'table'])->name('admin.table');
+Route::get('/admin/table', [AdminController::class, 'show'])->name('admin.table');
 Route::post('/admin/table', [AdminController::class, 'store'])->name('admin.store');
 Route::get('/admin/table/{gun}/edit', [AdminController::class, 'edit'])->name('admin.edit');
 Route::put('/admin/table/{gun}', [AdminController::class, 'update'])->name('admin.update');
+Route::delete('/admin/table/{gun}', [AdminController::class, 'destroy'])->name('admin.destroy');
 //Registro Employe
-Route::get('/admin/table/employes', [AdminController::class, 'employes'])->name('admin.employes');
-Route::post('/admin/table/employes', [AdminController::class, 'employe'])->name('admin.store-employe');
+Route::get('/admin/table/employes', [EmployeController::class, 'index'])->name('admin.employes');
+Route::post('/admin/table/employes', [EmployeController::class, 'create'])->name('admin.store-employe');
+Route::get('/admin/table/employe/{employe}/edit', [EmployeController::class, 'edit'])->name('admin.editEmploye');
+Route::put('/admin/table/employe/{employe}', [EmployeController::class, 'update'])->name('admin.updateEmploye');
+Route::delete('admin/table/employe/{employe}', [EmployeController::class, 'delete'])->name('admin.deleteEmploye');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
