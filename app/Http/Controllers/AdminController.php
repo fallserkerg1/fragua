@@ -65,6 +65,14 @@ class AdminController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'name' => 'required',
+            'class' => 'required',
+            'factory' => 'required',
+            'description' => 'required',
+            'price' => 'required',
+        ]);
+
         $registro = new Gun();
 
         $registro->name = $request->name;
@@ -95,9 +103,9 @@ class AdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Gun $gun)
     {
-        //
+        return view('admin.edit', compact('gun'));
     }
 
     /**
@@ -107,9 +115,20 @@ class AdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Gun $gun)
     {
-        //
+
+        $gun->name = $request->name;
+        $gun->class = $request->class;
+        $gun->factory = $request->factory;
+        $gun->description = $request->description;
+        $gun->price = $request->price;
+
+        $gun->save();
+
+        return redirect()->route('admin.table', $gun);
+
+
     }
 
     /**
